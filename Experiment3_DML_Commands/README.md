@@ -46,174 +46,192 @@ Used to retrieve records from a table.
 SELECT column1, column2 FROM table_name WHERE condition;
 ```
 **Question 1**
---
--- ![Screenshot 2025-04-29 121653](https://github.com/user-attachments/assets/53b5f3b9-c9b6-4e2b-a010-2876d7e71d58)
--- ![Screenshot 2025-04-29 121523](https://github.com/user-attachments/assets/6218b66c-b292-4f15-9f78-d07da1e45385)
 
+Decrease the reorder level by 30 percent where the product name contains 'cream' and quantity in stock is higher than reorder level in the products table.
 
+![image](https://github.com/user-attachments/assets/79220db3-9920-47ea-a448-c66e1fbeb949)
 
-```sql
--- INSERT INTO Customers(CustomerID  ,Name,             Address,         Email)
-SELECT CustomerID  ,Name             ,Address         ,Email FROM Old_customers;
 ```
-```sql
--- INSERT INTO Customers(CustomerID ,Name,Address, City     ,   ZipCode)VALUES (301, "Michael Jordan",  "123 Maple St",  "Chicago",  60616);
+update PRODUCTS
+
+set reorder_lvl=reorder_lvl*0.7
+
+where product_name like '%cream%'
+
+and quantity>reorder_lvl;
 ```
+
 **Output:**
 
-![Screenshot 2025-04-29 121659](https://github.com/user-attachments/assets/8cb31551-6831-454d-b418-edd48d7eb67f)
-![Screenshot 2025-04-29 121536](https://github.com/user-attachments/assets/c63a44bb-a3d1-41fb-bac6-878256b773b3)
-
+![image](https://github.com/user-attachments/assets/c7794ce9-f291-4cb1-9fd4-ac0994d054f4)
 
 **Question 2**
----
--- ![Screenshot 2025-04-29 123037](https://github.com/user-attachments/assets/1f0eb809-77c1-44ef-afa2-8421dcb11740)
 
+Write a SQL statement to Update the address to '58 Lakeview, Magnolia' where supplier ID is 5 in the suppliers table.
 
-```sql
--- UPDATE products
-SET product_name = 'Grapefruit'
-WHERE product_id =4;
+![image](https://github.com/user-attachments/assets/1aa6b872-0d06-4ce7-80e3-7c85154826c5)
+
+```
+update Suppliers
+
+set address= '58 Lakeview, Magnolia'
+
+where supplier_id=5;
 ```
 
 **Output:**
 
-![Screenshot 2025-04-29 123046](https://github.com/user-attachments/assets/fac16b56-8a39-4f79-85ce-bbb4c7e859c6)
-
+![image](https://github.com/user-attachments/assets/b2e0e836-404c-41c7-ae6c-5724881b8911)
 
 **Question 3**
----
---![Screenshot 2025-04-29 123317](https://github.com/user-attachments/assets/777ae485-23f4-4483-8715-29b910b9a718)
 
+Write a SQL statement to Increase the selling price by 15% in the products table where quantity in stock is less than 50 and supplier ID is 10.
 
-```sql
--- DELETE FROM surgeries
-WHERE  surgery_id =3;
+![image](https://github.com/user-attachments/assets/c6367757-fd62-4bf9-9799-e4485927a7a8)
+
+```
+update Products
+
+set sell_price=sell_price*1.15
+
+where quantity<50
+
+and supplier_id=10;
 ```
 
 **Output:**
-![Screenshot 2025-04-29 123327](https://github.com/user-attachments/assets/ed8e9b00-3bf7-4fff-8b31-4e8298e55694)
 
+![image](https://github.com/user-attachments/assets/58b09089-1ea3-4814-9cb1-9a355a7666c9)
 
 **Question 4**
----
--- ![Screenshot 2025-04-29 123951](https://github.com/user-attachments/assets/fbbc9c48-b733-4c6e-881c-da2102440159)
 
+For Increase the selling price per unit by 3 for all products supplied by supplier ID 4 in the sales table.
 
-```sql
--- SELECT customer_id, cust_name, city, grade, salesman_id
-FROM  customer
-WHERE  grade >100;
+![image](https://github.com/user-attachments/assets/ab5e782b-214e-4210-a344-80cba773ab9e)
+
+```
+update Products
+
+set sell_price=sell_price*1.15
+
+where quantity<50
+
+and supplier_id=10;
 ```
 
 **Output:**
 
-![Screenshot 2025-04-29 124001](https://github.com/user-attachments/assets/57d14ec4-855c-4b61-8374-1114b9dec239)
-
+![image](https://github.com/user-attachments/assets/c99ddf30-c492-4838-82c8-45d4456423f2)
 
 **Question 5**
----
--- ![Screenshot 2025-04-29 134956](https://github.com/user-attachments/assets/2e173acd-15a6-4d60-b8b9-c4b039481a65)
 
+For Increase the selling price per unit by 3 for all products supplied by supplier ID 4 in the sales table.
 
-```sql
--- SELECT ename,hiredate,DATE(hiredate ,'+100 Days') AS DateAfter100Days
-FROM emp;
+![image](https://github.com/user-attachments/assets/5fb594d8-e0cd-4af8-8f20-aa1a03569686)
+
+```
+update SALES
+
+set sell_price=sell_price+3
+
+where product_id in(select product_id
+
+from PRODUCTS
+
+where supplier_id=4 );
 ```
 
 **Output:**
-![Screenshot 2025-04-29 135004](https://github.com/user-attachments/assets/5a348d18-aeeb-4137-9a5a-e08c5c24223c)
 
-
+![image](https://github.com/user-attachments/assets/5a65b690-abc1-4f33-bbae-30075921eddd)
 
 **Question 6**
----
--- ![Screenshot 2025-04-29 135215](https://github.com/user-attachments/assets/88829371-d33e-4cd0-a174-a0926e8eabb6)
 
+Write a SQL statement to Double the salary for employees in department 20 who have a job_id ending with 'MAN'
 
-```sql
--- SELECT id,ROUND(decimal,3) AS  rounded_value
-FROM Calculations;
+![image](https://github.com/user-attachments/assets/63ee743e-6294-483c-ad4c-defb851b0d46)
+
+```
+UPDATE Employees
+
+set salary=salary*2
+
+where department_id=20
+
+and job_id like '%MAN';
 ```
 
 **Output:**
 
-![Screenshot 2025-04-29 135222](https://github.com/user-attachments/assets/5f5b5228-2fed-4803-87d2-9897b3db8567)
-
+![image](https://github.com/user-attachments/assets/0728490e-6602-4c5a-8e24-e781d97a4e0e)
 
 **Question 7**
----
--- ![Screenshot 2025-04-29 135350](https://github.com/user-attachments/assets/1e205fbe-54c1-4a8a-a2af-1a9123217ee9)
 
+Write a SQL query to Delete a Specific Surgery which was made on 28th Feb 2024.
 
-```sql
--- DELETE FROM Customer
-WHERE LENGTH(CUST_NAME) =6;
+![image](https://github.com/user-attachments/assets/f02468d8-a468-46b4-b135-43cb93a1bbbe)
+
+```
+delete from Surgeries
+
+where surgery_date='2024-02-28';
 ```
 
 **Output:**
 
-![Screenshot 2025-04-29 135415](https://github.com/user-attachments/assets/2a0b7aa7-d093-4b51-99e0-c95da4a2114d)
-
+![image](https://github.com/user-attachments/assets/66acac18-605d-47e1-b847-cacb0124e82e)
 
 **Question 8**
----
--- ![Screenshot 2025-04-29 135607](https://github.com/user-attachments/assets/576f2b96-fb2f-41c3-a9d9-6de324daedaf)
 
+Write a SQL query to Delete customers from 'customer' table where 'CUST_CITY' is not 'New York' and 'OUTSTANDING_AMT' is greater than 5000.
 
-```sql
--- UPDATE Employees 
-SET salary = 8000
-WHERE employee_id =105 AND salary < 5000;
+![image](https://github.com/user-attachments/assets/5a71a3e0-b295-4dcd-96d9-aec77149cc1f)
+
+```
+delete from Customer
+
+where CUST_CITY!='New York'
+
+and OUTSTANDING_AMT>5000;
 ```
 
 **Output:**
-![Screenshot 2025-04-29 135613](https://github.com/user-attachments/assets/28d12da8-8149-4782-8582-03b0f1ed09d9)
 
-
+![image](https://github.com/user-attachments/assets/4161feb8-01e9-408d-a961-45797a8b2cff)
 
 **Question 9**
----
---![Screenshot 2025-04-29 135759](https://github.com/user-attachments/assets/d6e7d168-f8bb-4156-9070-fee806976f26)
 
+Write a SQL query to Delete all Doctors whose Specialization is either 'Pediatrics' or 'Cardiology' and Last Name is Brown.
 
-```sql
--- SELECT id, value1, 
-        CASE 
-           WHEN  value1 >50 THEN 'High'
-           ELSE 'Low'
-        END AS  value_category
-FROM Calculations;
+![image](https://github.com/user-attachments/assets/8b247064-2352-4fe7-acdd-1711eea27ed1)
 
+```
+delete from Doctors
+
+where Specialization in ('Pediatrics','Cardiology')
+
+and last_name like '%Brown%';
 ```
 
 **Output:**
-![Screenshot 2025-04-29 135803](https://github.com/user-attachments/assets/9ae7a5e9-2bfd-48f3-a187-40c6d38e38c8)
 
-
+![image](https://github.com/user-attachments/assets/269b81dd-fa71-45a9-858f-55b5285ea606)
 
 **Question 10**
----
--- ![Screenshot 2025-04-29 135949](https://github.com/user-attachments/assets/fe30c891-ce3e-47c4-9f5d-35b8ea958056)
 
+Write a SQL query to Delete customers from 'customer' table where 'GRADE' is greater than or equal to 2.
 
-```sql
--- SELECT 
-    product_id, 
-    original_price, 
-    discount_percentage,
-    original_price *discount_percentage AS discount_amount
-FROM 
-    products
-WHERE  
-    original_price * discount_percentage >50;
+![image](https://github.com/user-attachments/assets/a25ffa8b-c335-44c1-82c3-9143c317ee2f)
+
+```
+delete from Customer
+
+where GRADE>=2;
 ```
 
 **Output:**
 
-![Screenshot 2025-04-29 135954](https://github.com/user-attachments/assets/30bfdccc-5cf0-49cd-82fd-353e4e03c637)
-
-
+![image](https://github.com/user-attachments/assets/7c5acc0e-05ec-4da4-98a1-957cf3d953f8)
 
 ## RESULT
 Thus, the SQL queries to implement DML commands have been executed successfully.
